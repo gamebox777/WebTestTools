@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ImageIcon, CalculatorIcon, TypeIcon, Scaling } from "lucide-react";
+import packageJson from "../../package.json";
 
 export default function Home() {
   const tools = [
@@ -43,7 +44,12 @@ export default function Home() {
     <main className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 p-8">
       <div className="max-w-5xl mx-auto space-y-8">
         <div className="space-y-2">
-          <h1 className="text-4xl font-extrabold tracking-tight">Test Tools Portal</h1>
+          <div className="flex items-end gap-3">
+            <h1 className="text-4xl font-extrabold tracking-tight">WebSystemTestTools Portal</h1>
+            <span className="text-sm font-medium text-neutral-500 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-800 px-2 py-1 rounded-md mb-1">
+              v{packageJson.version}
+            </span>
+          </div>
           <p className="text-lg text-neutral-500 dark:text-neutral-400">
             Webシステムのテストを支援するための各種ツール群へアクセスできます。
           </p>
@@ -54,7 +60,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg inline-flex items-center transition-colors"
             >
-              【マニュアル】はこちら
+              【マニュアル】はこちら (GitHub)
             </a>
           </div>
         </div>
