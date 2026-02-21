@@ -273,35 +273,6 @@ export default function ImageGenerator() {
                                                 </SelectContent>
                                             </Select>
                                         </div>
-                                        <div className="space-y-2">
-                                            <Label className="text-xs text-neutral-500">よくある画像サイズ</Label>
-                                            <div className="flex flex-wrap gap-2">
-                                                <Button
-                                                    type="button"
-                                                    variant="outline"
-                                                    size="sm"
-                                                    onClick={() => handlePresetChange("インラインレクタングル (300x250)")}
-                                                >
-                                                    300x250
-                                                </Button>
-                                                <Button
-                                                    type="button"
-                                                    variant="outline"
-                                                    size="sm"
-                                                    onClick={() => handlePresetChange("リーダーボード (728x90)")}
-                                                >
-                                                    728x90
-                                                </Button>
-                                                <Button
-                                                    type="button"
-                                                    variant="outline"
-                                                    size="sm"
-                                                    onClick={() => handlePresetChange("スマホバナー (320x50)")}
-                                                >
-                                                    320x50
-                                                </Button>
-                                            </div>
-                                        </div>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label htmlFor="width">幅 (px)</Label>

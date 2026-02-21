@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ImageIcon, CalculatorIcon, TypeIcon } from "lucide-react";
+import { ImageIcon, CalculatorIcon, TypeIcon, Scaling } from "lucide-react";
 
 export default function Home() {
   const tools = [
@@ -29,6 +29,14 @@ export default function Home() {
       color: "border-purple-200 dark:border-purple-900",
       active: true,
     },
+    {
+      title: "アスペクト比計算機",
+      description: "画像の仕様決めやトリミング用に、縦横比からサイズや、サイズから比率を計算します。",
+      href: "/tools/aspect-ratio",
+      icon: <Scaling className="w-8 h-8 text-indigo-500 mb-4" />,
+      color: "border-indigo-200 dark:border-indigo-900",
+      active: true,
+    },
   ];
 
   return (
@@ -39,6 +47,16 @@ export default function Home() {
           <p className="text-lg text-neutral-500 dark:text-neutral-400">
             Webシステムのテストを支援するための各種ツール群へアクセスできます。
           </p>
+          <div className="pt-2">
+            <a
+              href="https://github.com/gamebox777/WebTestTools/blob/develop/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg inline-flex items-center transition-colors"
+            >
+              【マニュアル】はこちら
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
