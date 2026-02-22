@@ -4,6 +4,8 @@
 
 **🌐 アプリケーションURL:** [https://webtesttools.vercel.app/](https://webtesttools.vercel.app/)
 
+**✍️ 開発者ブログ:** [https://unitygamebox.com/](https://unitygamebox.com/)
+
 Webシステムの検証や動作確認をサポートするための、便利なツール群をまとめたポータルサイトです。
 ブラウザ上から簡単にテスト用データの生成や作業ができ、開発者・テスター・デザイナーの作業効率を向上させます。
 
@@ -76,6 +78,7 @@ Webサイトのレイアウト検証やアップロード機能のテスト用�
 ---
 
 ## 📝 更新履歴
+- 2026-02-22: READMEの上部に開発者ブログのリンクを追加。
 - 2026-02-21: READMEの大見出しタイトルを「WebTestTools (ウェブテストツールス)」に変更。
 - 2026-02-21: アプリ本体のURLを上部に明記。最新のツール一覧(Text Generator, Text Counter)の追加と、ユーザーマニュアルとしてREADME全体を再構成。
 - 2026-02-21: ツール一覧にアスペクト比計算機 (Aspect Ratio Calculator) を追加。
