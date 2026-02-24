@@ -1,10 +1,10 @@
 # 🛠️ WebTestTools (ウェブテストツールス)
 
-[![Web App](https://img.shields.io/badge/Web_App-アクセスはこちら-blue?style=for-the-badge&logo=vercel)](https://webtesttools.vercel.app/)
+<a href="https://webtesttools.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Web_App-アクセスはこちら-blue?style=for-the-badge&logo=vercel" alt="Web App"></a>
 
-**🌐 アプリケーションURL:** [https://webtesttools.vercel.app/](https://webtesttools.vercel.app/)
+**🌐 アプリケーションURL:** <a href="https://webtesttools.vercel.app/" target="_blank" rel="noopener noreferrer">https://webtesttools.vercel.app/</a>
 
-**✍️ 開発者ブログ:** [https://unitygamebox.com/](https://unitygamebox.com/)
+**✍️ 開発者ブログ:** <a href="https://unitygamebox.com/" target="_blank" rel="noopener noreferrer">https://unitygamebox.com/</a>
 
 Webシステムの検証や動作確認をサポートするための、便利なツール群をまとめたポータルサイトです。
 ブラウザ上から簡単にテスト用データの生成や作業ができ、開発者・テスター・デザイナーの作業効率を向上させます。
@@ -63,7 +63,7 @@ Webサイトのレイアウト検証やアップロード機能のテスト用�
 
 ## 💡 使い方 (ユーザーマニュアル)
 
-1. **ポータルトップ ([https://webtesttools.vercel.app/](https://webtesttools.vercel.app/))** にアクセスします。
+1. **ポータルトップ (<a href="https://webtesttools.vercel.app/" target="_blank" rel="noopener noreferrer">https://webtesttools.vercel.app/</a>)** にアクセスします。
 2. 利用したいツールを探し、カード内の **「開く」** をクリックして各ツールのページへ移動します。
 3. **ツールの操作**:
    - **画像生成**: 形式、サイズ、枚数、色などを設定し、「ファイルを生成」ボタンを押してダウンロードします。
@@ -85,11 +85,12 @@ Webサイトのレイアウト検証やアップロード機能のテスト用�
 ## 📄 不具合報告・ご要望
 
 ツールの不具合報告や新機能のご要望は、以下のGitHub Issuesよりお願いいたします。
-🔗 [不具合報告・要望はこちら (GitHub Issues)](https://github.com/gamebox777/WebTestTools/issues)
+🔗 <a href="https://github.com/gamebox777/WebTestTools/issues" target="_blank" rel="noopener noreferrer">不具合報告・要望はこちら (GitHub Issues)</a>
 
 ---
 
 ## 📝 更新履歴
+- 2026-02-24: README内の外部リンクを別タブで開くように変更（HTML <a>タグ化）。
 - 2026-02-22: READMEの上部に開発者ブログのリンクを追加。
 - 2026-02-21: READMEの大見出しタイトルを「WebTestTools (ウェブテストツールス)」に変更。
 - 2026-02-21: アプリ本体のURLを上部に明記。最新のツール一覧(Text Generator, Text Counter)の追加と、ユーザーマニュアルとしてREADME全体を再構成。
