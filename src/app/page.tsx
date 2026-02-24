@@ -55,7 +55,7 @@ export default function Home() {
           </p>
           <div className="pt-2">
             <a
-              href="https://github.com/gamebox777/WebTestTools/blob/develop/README.md"
+              href="https://github.com/gamebox777/WebTestTools/blob/main/README.md"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg inline-flex items-center transition-colors"
