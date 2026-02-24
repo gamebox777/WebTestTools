@@ -97,7 +97,7 @@ export default function TextGeneratorPage() {
         }
 
         if (type === "lorem" || type === "japanese") {
-            let baseStr = type === "lorem" ? loremIpsum : japaneseDummy;
+            const baseStr = type === "lorem" ? loremIpsum : japaneseDummy;
 
             while (result.length < length) {
                 result += baseStr;
