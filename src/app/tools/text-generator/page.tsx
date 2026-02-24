@@ -16,7 +16,7 @@ const japaneseDummy = "吾輩は猫である。名前はまだ無い。どこで
 const pools: Record<string, { full: string; half: string }> = {
     hiragana: {
         full: "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん",
-        half: "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん",
+        half: "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ",
     },
     katakana: {
         full: "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン",
@@ -83,6 +83,7 @@ export default function TextGeneratorPage() {
     const [type, setType] = useState<string>("japanese");
     const [charWidth, setCharWidth] = useState<string>("default");
     const [newline, setNewline] = useState<string>("none");
+    const [newlineLength, setNewlineLength] = useState<number>(50);
     const [generatedText, setGeneratedText] = useState<string>("");
     const [copied, setCopied] = useState(false);
 
@@ -97,10 +98,6 @@ export default function TextGeneratorPage() {
 
         if (type === "lorem" || type === "japanese") {
             let baseStr = type === "lorem" ? loremIpsum : japaneseDummy;
-            if (newline === "yes") {
-                if (type === "japanese") baseStr = baseStr.replace(/。/g, "。\n");
-                if (type === "lorem") baseStr = baseStr.replace(/\. /g, ".\n");
-            }
 
             while (result.length < length) {
                 result += baseStr;
@@ -113,11 +110,28 @@ export default function TextGeneratorPage() {
             } else if (targetWidth === "half") {
                 result = toHalfWidth(result);
             } else if (targetWidth === "mixed") {
+                // 半角文字プール（英数字・半角カタカナ）
+                const halfWidthPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ";
                 let mixed = "";
                 for (let i = 0; i < result.length; i++) {
-                    mixed += Math.random() > 0.5 ? toFullWidth(result[i]) : toHalfWidth(result[i]);
+                    if (Math.random() > 0.5) {
+                        // ランダムな半角文字に置換
+                        mixed += halfWidthPool.charAt(Math.floor(Math.random() * halfWidthPool.length));
+                    } else {
+                        // 元の全角文字をそのまま使用
+                        mixed += result[i];
+                    }
                 }
                 result = mixed;
+            }
+
+            // 改行処理
+            if (newline === "sentence") {
+                if (type === "japanese") result = result.replace(/。/g, "。\n");
+                if (type === "lorem") result = result.replace(/\. /g, ".\n");
+            } else if (newline === "fixed") {
+                const regex = new RegExp(`(.{${newlineLength}})`, "g");
+                result = result.replace(regex, "$1\n");
             }
         } else {
             const poolType = pools[type];
@@ -131,12 +145,15 @@ export default function TextGeneratorPage() {
             }
 
             for (let i = 0; i < length; i++) {
-                if (newline === "yes" && result.length > 0 && result.length % 50 === 0) {
-                    result += "\n";
-                }
                 result += pool.charAt(Math.floor(Math.random() * pool.length));
             }
             result = result.substring(0, length);
+
+            // 改行処理
+            if (newline === "fixed") {
+                const regex = new RegExp(`(.{${newlineLength}})`, "g");
+                result = result.replace(regex, "$1\n");
+            }
         }
         setGeneratedText(result);
         setCopied(false);
@@ -215,17 +232,35 @@ export default function TextGeneratorPage() {
                             </Select>
                         </div>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="newline">改行</Label>
-                            <Select value={newline} onValueChange={setNewline}>
-                                <SelectTrigger id="newline" className="focus:ring-purple-500">
-                                    <SelectValue placeholder="改行を選択" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="none">なし</SelectItem>
-                                    <SelectItem value="yes">あり (文章、または50文字ごと)</SelectItem>
-                                </SelectContent>
-                            </Select>
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="newline">改行</Label>
+                                <Select value={newline} onValueChange={setNewline}>
+                                    <SelectTrigger id="newline" className="focus:ring-purple-500">
+                                        <SelectValue placeholder="改行を選択" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="none">なし</SelectItem>
+                                        <SelectItem value="sentence" disabled={!["japanese", "lorem"].includes(type)}>文章ごと</SelectItem>
+                                        <SelectItem value="fixed">指定文字数ごと</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            {newline === "fixed" && (
+                                <div className="space-y-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                                    <Label htmlFor="newline-length">改行する文字数</Label>
+                                    <Input
+                                        id="newline-length"
+                                        type="number"
+                                        min={1}
+                                        max={1000}
+                                        value={newlineLength}
+                                        onChange={(e) => setNewlineLength(Number(e.target.value) || 1)}
+                                        className="font-mono focus-visible:ring-purple-500"
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         <div className="space-y-2">
